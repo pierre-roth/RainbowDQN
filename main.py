@@ -1,7 +1,5 @@
 import argparse
 import sys
-from src.train import train, visualize
-from src.utils import plot_metrics
 from pathlib import Path
 
 if __name__ == "__main__":
@@ -24,10 +22,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if args.command == "train":
+        from src.train import train
         train(resume_path=args.resume, seed=args.seed)
     elif args.command == "visualize":
+        from src.train import visualize
         visualize(checkpoint_path=args.checkpoint)
     elif args.command == "plot":
+        from src.utils import plot_metrics
         log_path = args.log_path
         if log_path is None:
             # Auto-discovery logic for plot
